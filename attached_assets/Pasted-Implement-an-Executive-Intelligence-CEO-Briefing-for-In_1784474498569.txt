@@ -1,0 +1,349 @@
+Implement an Executive Intelligence "CEO Briefing" for InsightPilot.
+
+The CEO Briefing should become the first component displayed after a dataset is analyzed.
+
+==================================================
+OBJECTIVE
+==================================================
+
+Create a concise executive summary that gives decision-makers an immediate understanding of the business.
+
+The briefing must be generated entirely from the existing analytics engine.
+
+DO NOT use Gemini.
+
+DO NOT call any LLM.
+
+Reuse existing services.
+
+==================================================
+ARCHITECTURE
+==================================================
+
+Create a new service:
+
+services/ceo_briefing.py
+
+This service should only compose outputs from existing services.
+
+Reuse:
+
+BusinessClassifier
+
+AnalyticsService
+
+KPIDetector
+
+BusinessContextBuilder
+
+AnomalyDetector
+
+ChartPlanner
+
+Never duplicate business logic.
+
+==================================================
+OUTPUT
+==================================================
+
+Return a JSON object.
+
+{
+  "business_domain": "",
+  "confidence": 0,
+
+  "overall_health": {
+      "score": 84,
+      "status": "Healthy"
+  },
+
+  "urgency": "Low",
+
+  "biggest_risk": "",
+
+  "top_opportunity": "",
+
+  "priority_action": "",
+
+  "executive_summary": "",
+
+  "key_takeaways": [
+      "...",
+      "...",
+      "..."
+  ]
+}
+
+==================================================
+OVERALL HEALTH SCORE
+==================================================
+
+Create a deterministic score from 0–100.
+
+Use weighted factors.
+
+Suggested weights:
+
+25%
+Missing values
+
+20%
+Duplicate rows
+
+20%
+Anomaly severity
+
+20%
+Data completeness
+
+15%
+Business KPI quality
+
+Clamp score between 0 and 100.
+
+Map score to status:
+
+90-100
+Excellent
+
+75-89
+Healthy
+
+60-74
+Needs Attention
+
+40-59
+At Risk
+
+Below 40
+Critical
+
+==================================================
+URGENCY
+==================================================
+
+Determine urgency from analytics.
+
+Examples
+
+Critical
+
+High
+
+Medium
+
+Low
+
+Consider
+
+Missing values
+
+Outliers
+
+Detected risks
+
+Poor KPIs
+
+==================================================
+BIGGEST RISK
+==================================================
+
+Generate one sentence.
+
+Examples
+
+Customer churn is increasing among long-term customers.
+
+Revenue concentration is too dependent on one region.
+
+Inventory shortages may affect fulfillment.
+
+Employee attrition is concentrated in Engineering.
+
+If no major risks exist, explicitly say so.
+
+==================================================
+TOP OPPORTUNITY
+==================================================
+
+Generate one actionable opportunity.
+
+Examples
+
+Focus marketing spend on the highest-converting channel.
+
+Increase inventory for best-selling products.
+
+Improve retention for premium customers.
+
+Expand sales in the highest-margin region.
+
+==================================================
+PRIORITY ACTION
+==================================================
+
+Generate exactly ONE executive recommendation.
+
+Begin with an action verb.
+
+Examples
+
+Investigate...
+
+Increase...
+
+Reduce...
+
+Optimize...
+
+Review...
+
+==================================================
+EXECUTIVE SUMMARY
+==================================================
+
+Generate 3-5 concise sentences.
+
+Example style:
+
+"The dataset represents a telecommunications business.
+
+Overall data quality is high.
+
+Customer churn appears to be the most important business issue.
+
+Management should prioritize improving contract renewals."
+
+==================================================
+KEY TAKEAWAYS
+==================================================
+
+Return exactly three executive bullets.
+
+Short.
+
+Action-oriented.
+
+No technical language.
+
+==================================================
+FRONTEND
+==================================================
+
+Add a new card above the KPI cards.
+
+Title:
+
+CEO Briefing
+
+Layout
+
+----------------------------------------
+
+Business Domain
+
+Overall Health (large colored badge)
+
+Urgency
+
+Biggest Risk
+
+Top Opportunity
+
+Priority Action
+
+Executive Summary
+
+Three Key Takeaways
+
+----------------------------------------
+
+==================================================
+VISUAL DESIGN
+==================================================
+
+Use an executive dashboard style.
+
+Health Score
+
+Large circular score badge.
+
+Color coding:
+
+90-100
+Green
+
+75-89
+Blue
+
+60-74
+Yellow
+
+40-59
+Orange
+
+Below 40
+Red
+
+Urgency
+
+Colored badge.
+
+Low
+
+Medium
+
+High
+
+Critical
+
+Risk
+
+Warning icon.
+
+Opportunity
+
+Lightbulb icon.
+
+Priority Action
+
+Target icon.
+
+==================================================
+ANIMATIONS
+==================================================
+
+Fade in after analysis.
+
+Smooth card entrance.
+
+==================================================
+CONSTRAINTS
+==================================================
+
+Do not use Gemini.
+
+Do not hardcode dataset-specific text.
+
+Generate everything from existing analytics.
+
+Keep all logic inside services/ceo_briefing.py.
+
+Keep API routes thin.
+
+Do not modify existing analytics services.
+
+==================================================
+GOAL
+==================================================
+
+The CEO Briefing should answer, within 10 seconds of uploading a dataset:
+
+• What business is this?
+• How healthy is it?
+• How urgent are the problems?
+• What is the biggest risk?
+• What is the biggest opportunity?
+• What should management do next?
+
+The briefing should feel like the first page of a McKinsey or Deloitte executive report rather than a technical dashboard.

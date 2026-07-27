@@ -1,0 +1,2 @@
+- [InsightPilot Python backend](insightpilot-python-backend.md) — Python FastAPI runs in the insightpilot artifact; pip install blocked in Nix, use installLanguagePackages callback instead.
+- [OpenAPI binary file fields](openapi-binary-field.md) — format:binary in OpenAPI generates zod.instanceof(File) which breaks lib typecheck in Node.js; avoid it.

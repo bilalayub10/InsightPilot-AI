@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "fjOK0o5u7C9BMCPmSGRyN"
+uri = "file://InsightPilot_Product_Bible.pdf"
+type = "pdf"
+title = "InsightPilot AI — Product Bible"

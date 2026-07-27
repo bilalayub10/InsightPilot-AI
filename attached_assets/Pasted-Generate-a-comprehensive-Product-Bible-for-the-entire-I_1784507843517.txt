@@ -1,0 +1,631 @@
+Generate a comprehensive Product Bible for the entire InsightPilot project.
+
+This document will become the single source of truth for the project.
+
+The output should be a professionally formatted PDF.
+
+The PDF should read like documentation produced by a top software company (Google, Microsoft, Stripe, Notion, OpenAI).
+
+This document must be detailed enough that someone unfamiliar with the project could understand every aspect of it.
+
+Do not summarize.
+
+Explain everything in depth.
+
+======================================================
+OBJECTIVE
+======================================================
+
+Generate a complete technical and product document covering every aspect of InsightPilot.
+
+This document will later be used to create:
+
+• GitHub README
+• Hackathon submission answers
+• Demo script
+• Architecture explanation
+• Recruiter portfolio
+• Technical interview preparation
+• Future development roadmap
+• Investor/Product presentation
+
+Therefore it should contain every important detail.
+
+======================================================
+SECTION 1
+PROJECT OVERVIEW
+======================================================
+
+Explain:
+
+What InsightPilot is.
+
+What problem it solves.
+
+Why it was built.
+
+Why traditional BI tools are insufficient.
+
+How AI changes business analytics.
+
+Vision.
+
+Mission.
+
+Core philosophy.
+
+Unique value proposition.
+
+Competitive advantage.
+
+======================================================
+SECTION 2
+TARGET USERS
+======================================================
+
+Describe every intended audience.
+
+Executives
+
+CEOs
+
+Business Analysts
+
+Data Analysts
+
+BI Analysts
+
+Operations Managers
+
+Marketing Managers
+
+HR Teams
+
+Finance Teams
+
+Startup founders
+
+Students
+
+Researchers
+
+Consultants
+
+Explain:
+
+Their problems.
+
+How InsightPilot helps them.
+
+Expected workflow.
+
+Benefits.
+
+======================================================
+SECTION 3
+PROBLEM STATEMENT
+======================================================
+
+Explain:
+
+Current workflow.
+
+Pain points.
+
+Manual analysis.
+
+Excel limitations.
+
+Power BI limitations.
+
+Dashboard fatigue.
+
+Time wasted.
+
+Decision-making bottlenecks.
+
+Why conversational analytics matters.
+
+======================================================
+SECTION 4
+PRODUCT FEATURES
+======================================================
+
+Explain every feature individually.
+
+CSV Upload
+
+Excel Upload
+
+Business Classification
+
+Analytics Engine
+
+Data Profiling
+
+KPI Detection
+
+Chart Planning
+
+CEO Briefing
+
+Business Health Score
+
+Chart Insights
+
+AI Copilot
+
+Executive Report
+
+Data Quality Assessment
+
+For every feature explain:
+
+Purpose
+
+Inputs
+
+Outputs
+
+Workflow
+
+Business value
+
+Technical implementation
+
+Future improvements
+
+======================================================
+SECTION 5
+SYSTEM ARCHITECTURE
+======================================================
+
+Explain the architecture in detail.
+
+Frontend
+
+Backend
+
+API
+
+Services
+
+Data Flow
+
+AI Layer
+
+Gemini Integration
+
+Report Generator
+
+State Management
+
+Routing
+
+Caching
+
+Error Handling
+
+Scalability
+
+Include architecture diagrams using Mermaid.
+
+======================================================
+SECTION 6
+DATA FLOW
+======================================================
+
+Explain the entire lifecycle.
+
+Upload
+
+Validation
+
+Parsing
+
+Cleaning
+
+Business Classification
+
+Analytics
+
+KPIs
+
+Charts
+
+CEO Briefing
+
+AI Context
+
+Copilot
+
+Executive Report
+
+Use diagrams.
+
+======================================================
+SECTION 7
+AI ARCHITECTURE
+======================================================
+
+Explain:
+
+BusinessClassifier
+
+ChartPlanner
+
+AnalyticsService
+
+ChartInsights
+
+BusinessContextBuilder
+
+CEOBriefing
+
+Copilot
+
+Prompt Engineering
+
+Context Construction
+
+Hallucination Prevention
+
+Why raw CSV is never sent to Gemini.
+
+Explain every AI design decision.
+
+======================================================
+SECTION 8
+TECHNICAL IMPLEMENTATION
+======================================================
+
+Explain:
+
+Folder structure.
+
+Every major module.
+
+Every service.
+
+Every API endpoint.
+
+Responsibilities.
+
+Relationships.
+
+Design patterns.
+
+Dependency flow.
+
+Why each design decision was made.
+
+======================================================
+SECTION 9
+USER JOURNEY
+======================================================
+
+Describe the complete user journey.
+
+Landing page
+
+Upload
+
+Analysis
+
+Dashboard
+
+CEO Briefing
+
+Copilot
+
+Executive Report
+
+Download
+
+Include UX reasoning.
+
+======================================================
+SECTION 10
+BUSINESS VALUE
+======================================================
+
+Explain:
+
+How businesses benefit.
+
+Time savings.
+
+Decision support.
+
+Executive reporting.
+
+Self-service analytics.
+
+Reduced BI dependency.
+
+Improved productivity.
+
+======================================================
+SECTION 11
+COMPETITOR ANALYSIS
+======================================================
+
+Compare InsightPilot with:
+
+Power BI
+
+Tableau
+
+Looker
+
+Metabase
+
+Google Looker Studio
+
+ChatGPT
+
+Claude
+
+Gemini
+
+Highlight:
+
+Strengths
+
+Weaknesses
+
+Unique differentiators
+
+======================================================
+SECTION 12
+TECH STACK
+======================================================
+
+Explain every technology used.
+
+Frontend
+
+Backend
+
+Python
+
+FastAPI
+
+React
+
+Replit
+
+Gemini
+
+Pandas
+
+Plotly/Recharts
+
+ReportLab (or current PDF library)
+
+Explain why each technology was selected.
+
+======================================================
+SECTION 13
+SECURITY
+======================================================
+
+Discuss:
+
+File validation
+
+Prompt safety
+
+Input validation
+
+Error handling
+
+Privacy
+
+Data isolation
+
+Temporary storage
+
+Future authentication
+
+======================================================
+SECTION 14
+PERFORMANCE
+======================================================
+
+Explain:
+
+Large datasets
+
+Memory usage
+
+Caching
+
+AI latency
+
+Optimizations
+
+Future improvements
+
+======================================================
+SECTION 15
+LIMITATIONS
+======================================================
+
+Be honest.
+
+Current limitations.
+
+Known issues.
+
+Future enhancements.
+
+======================================================
+SECTION 16
+ROADMAP
+======================================================
+
+Organize roadmap into:
+
+Hackathon MVP
+
+Version 1.0
+
+Version 2.0
+
+Version 3.0
+
+Long-term vision
+
+======================================================
+SECTION 17
+DEMO SCRIPT
+======================================================
+
+Write a complete 5–7 minute demo script.
+
+Include:
+
+What to say.
+
+What to click.
+
+Expected output.
+
+How to impress judges.
+
+Storytelling.
+
+======================================================
+SECTION 18
+HACKATHON SUBMISSION
+======================================================
+
+Generate polished answers for common submission questions.
+
+Problem
+
+Solution
+
+Innovation
+
+AI Usage
+
+Technical Complexity
+
+Scalability
+
+Impact
+
+Future Vision
+
+======================================================
+SECTION 19
+GITHUB README CONTENT
+======================================================
+
+Generate all content needed for an excellent README.
+
+Project description
+
+Features
+
+Architecture
+
+Installation
+
+Usage
+
+Screenshots placeholders
+
+Roadmap
+
+Contributing
+
+License
+
+======================================================
+SECTION 20
+INTERVIEW PREPARATION
+======================================================
+
+Generate likely interview questions and strong answers.
+
+Architecture
+
+AI
+
+Analytics
+
+Business decisions
+
+Technical trade-offs
+
+======================================================
+SECTION 21
+LESSONS LEARNED
+======================================================
+
+Explain the engineering lessons demonstrated by the project.
+
+System design
+
+Analytics
+
+AI orchestration
+
+Business intelligence
+
+Modularity
+
+Scalability
+
+======================================================
+SECTION 22
+APPENDIX
+======================================================
+
+Include:
+
+Glossary
+
+Architecture diagrams
+
+Flowcharts
+
+Sequence diagrams
+
+Folder tree
+
+API reference
+
+Configuration
+
+Environment variables
+
+Dependencies
+
+======================================================
+DOCUMENT QUALITY
+======================================================
+
+The document should be:
+
+• Extremely detailed (50–100+ pages if necessary)
+• Professionally written
+• Properly formatted
+• Table of contents
+• Page numbers
+• Headings
+• Code snippets where helpful
+• Mermaid diagrams
+• Tables
+• Callout boxes
+• Executive summaries
+• Consistent terminology
+
+Do not leave placeholders where information can be inferred from the existing project.
+
+Inspect the current codebase and architecture to accurately document the implementation instead of inventing features.
+
+The final PDF should serve as the definitive reference for InsightPilot and be sufficient to generate all future documentation, presentations, README files, submission answers, and demo materials from this single source of truth.

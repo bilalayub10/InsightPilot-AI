@@ -1,0 +1,678 @@
+Implement an AI Copilot for InsightPilot.
+
+
+
+This is the flagship feature of the application.
+
+
+
+DO NOT rewrite or replace any existing analytics services.
+
+
+
+Reuse the existing architecture and compose them together.
+
+
+
+==================================================
+
+OBJECTIVE
+
+==================================================
+
+
+
+Allow users to chat with their uploaded dataset like an AI Business Analyst.
+
+
+
+Example questions:
+
+
+
+"Why is customer churn high?"
+
+
+
+"What is the biggest business risk?"
+
+
+
+"Which KPI needs attention?"
+
+
+
+"What should management focus on?"
+
+
+
+"What trends stand out?"
+
+
+
+"Summarize this dataset."
+
+
+
+"What charts should I look at?"
+
+
+
+The AI should answer like a senior Business Intelligence consultant, not like ChatGPT.
+
+
+
+==================================================
+
+ARCHITECTURE
+
+==================================================
+
+
+
+Create a new service:
+
+
+
+services/copilot.py
+
+
+
+This service is responsible ONLY for:
+
+
+
+- building business context
+
+- calling Gemini  
+
+- formatting responses
+
+
+
+No business logic should exist inside the route.
+
+
+
+==================================================
+
+CREATE NEW API
+
+==================================================
+
+
+
+POST
+
+
+
+/api/copilot
+
+
+
+Input
+
+
+
+{
+
+    "datasetId":"...",
+
+    "question":"Why is revenue declining?"
+
+}
+
+
+
+Response
+
+
+
+{
+
+    "answer":"...",
+
+    "reasoning":"...",
+
+    "confidence":92,
+
+    "follow_up_questions":[
+
+        "...",
+
+        "...",
+
+        "..."
+
+    ]
+
+}
+
+
+
+==================================================
+
+PIPELINE
+
+==================================================
+
+
+
+The endpoint must:
+
+
+
+1.
+
+
+
+Load dataset from datasetId
+
+
+
+2.
+
+
+
+Reuse existing services.
+
+
+
+BusinessClassifier
+
+
+
+AnalyticsService
+
+
+
+KPIDetector
+
+
+
+ChartPlanner
+
+
+
+AnomalyDetector
+
+
+
+BusinessContextBuilder
+
+
+
+DO NOT duplicate their logic.
+
+
+
+3.
+
+
+
+Create one structured Business Context object.
+
+
+
+Example
+
+
+
+{
+
+    domain,
+
+    confidence,
+
+    dataset_profile,
+
+    kpis,
+
+    charts,
+
+    anomalies,
+
+    risks,
+
+    strengths,
+
+    opportunities,
+
+    executive_summary,
+
+    actionable_insights
+
+}
+
+
+
+4.
+
+
+
+NEVER send the raw dataframe to Gemini.
+
+
+
+Never serialize the CSV.
+
+
+
+Never send rows.
+
+
+
+Only send structured summaries.
+
+
+
+==================================================
+
+PROMPT ENGINEERING
+
+==================================================
+
+
+
+Create a system prompt.
+
+
+
+Example personality:
+
+
+
+"You are a Senior Business Intelligence Consultant.
+
+
+
+You analyze datasets for CEOs and executives.
+
+
+
+You give concise, evidence-based recommendations.
+
+
+
+Never invent metrics.
+
+
+
+Never hallucinate.
+
+
+
+Only answer using the provided business context.
+
+
+
+If information is unavailable, explicitly state that.
+
+
+
+Keep responses professional."
+
+
+
+Then provide:
+
+
+
+Business Domain
+
+
+
+Confidence
+
+
+
+Dataset Profile
+
+
+
+KPIs
+
+
+
+Executive Summary
+
+
+
+Business Risks
+
+
+
+Opportunities
+
+
+
+Detected Anomalies
+
+
+
+Recommended Charts
+
+
+
+Actionable Insights
+
+
+
+User Question
+
+
+
+==================================================
+
+OUTPUT FORMAT
+
+==================================================
+
+
+
+Gemini should return JSON.
+
+
+
+{
+
+    "answer":"",
+
+    "reasoning":"",
+
+    "confidence":0,
+
+    "follow_up_questions":[]
+
+}
+
+
+
+Validate JSON.
+
+
+
+Gracefully recover if Gemini returns malformed output.
+
+
+
+==================================================
+
+FRONTEND
+
+==================================================
+
+
+
+Add a Copilot panel.
+
+
+
+Layout
+
+
+
+----------------------------------
+
+
+
+Executive Dashboard
+
+
+
+----------------------------------
+
+
+
+CEO Briefing
+
+
+
+----------------------------------
+
+
+
+Charts
+
+
+
+----------------------------------
+
+
+
+AI Copilot
+
+
+
+----------------------------------
+
+
+
+The Copilot contains
+
+
+
+Chat history
+
+
+
+Text input
+
+
+
+Send button
+
+
+
+Suggested questions
+
+
+
+==================================================
+
+SUGGESTED QUESTIONS
+
+==================================================
+
+
+
+Automatically generate buttons like
+
+
+
+Summarize this dataset
+
+
+
+Biggest business risk
+
+
+
+Top opportunity
+
+
+
+Explain the KPIs
+
+
+
+Explain the anomalies
+
+
+
+Recommended actions
+
+
+
+Forecast concerns
+
+
+
+Ask about customer behavior
+
+
+
+Questions should update based on detected domain.
+
+
+
+==================================================
+
+CHAT
+
+==================================================
+
+
+
+Conversation should persist while viewing the dataset.
+
+
+
+Display
+
+
+
+User messages
+
+
+
+Assistant messages
+
+
+
+Timestamp
+
+
+
+Typing indicator
+
+
+
+Auto scroll
+
+
+
+==================================================
+
+DESIGN
+
+==================================================
+
+
+
+Modern AI assistant.
+
+
+
+Rounded cards.
+
+
+
+Subtle animations.
+
+
+
+Typing dots.
+
+
+
+Markdown support.
+
+
+
+Bullet lists.
+
+
+
+Bold headings.
+
+
+
+==================================================
+
+ERROR HANDLING
+
+==================================================
+
+
+
+If Gemini fails
+
+use open router or then
+
+
+
+
+
+Return
+
+
+
+"I couldn't generate an AI response right now."
+
+
+
+without crashing.
+
+
+
+==================================================
+
+CONSTRAINTS
+
+==================================================
+
+
+
+Reuse every existing service.
+
+
+
+Keep Gemini isolated inside services/copilot.py.
+
+
+
+Keep API routes thin.
+
+
+
+Do not modify existing analytics calculations.
+
+
+
+Do not break the current dashboard.
+
+
+
+Follow the current project architecture.
+
+
+
+==================================================
+
+GOAL
+
+==================================================
+
+
+
+The finished product should feel like:
+
+
+
+Power BI
+
++
+
+ChatGPT
+
++
+
+Executive Business Analyst
+
+
+
+where users can upload any dataset, receive an executive dashboard, and then naturally ask follow-up questions about their data.
+
+
+

@@ -1,0 +1,48 @@
+Act as a senior software engineer and software architect.
+
+Your task is to refactor my entire codebase without changing the application's functionality, UI, API behavior, or business logic.
+
+Goals:
+- Analyze the entire project before making changes.
+- Remove duplicate code (DRY principle).
+- Modularize the code into logical components, services, utilities, hooks, helpers, and configuration files where appropriate.
+- Separate concerns properly.
+- Improve folder structure and file organization.
+- Extract reusable functions and components.
+- Remove unused files, imports, variables, functions, and dependencies.
+- Eliminate dead code and commented-out code.
+- Simplify overly complex functions.
+- Use clear, consistent naming conventions.
+- Improve readability and maintainability.
+- Keep files reasonably small by splitting large files into focused modules.
+- Standardize error handling.
+- Standardize logging.
+- Remove unnecessary re-renders and optimize performance where possible.
+- Improve type safety (if using TypeScript).
+- Ensure consistent formatting and coding style throughout the project.
+- Keep environment variables and configuration organized.
+- Preserve all existing features and behavior.
+
+Rules:
+- Do NOT introduce new features.
+- Do NOT redesign the UI.
+- Do NOT change database schema unless absolutely required.
+- Do NOT change API contracts.
+- Do NOT remove functionality.
+- Every refactor must preserve behavior.
+
+Process:
+1. Analyze the codebase.
+2. Create a refactoring plan.
+3. Refactor incrementally.
+4. After each major change, verify that the application still builds and behaves correctly.
+5. Fix any issues introduced by the refactor before continuing.
+6. Continue until the entire project is clean and modular.
+
+At the end, provide:
+- A summary of every file changed.
+- Files removed.
+- Files created.
+- Major architectural improvements.
+- Remaining technical debt.
+- Suggestions for future improvements (without implementing them).

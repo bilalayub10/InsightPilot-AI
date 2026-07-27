@@ -1,0 +1,36 @@
+kind = "web"
+previewPath = "/api-legacy"
+title = "API Server"
+version = "1.0.0"
+id = "artifacts/api-server"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/api-legacy" ]
+localPort = 22729
+
+[services.development]
+run = "pnpm --filter @workspace/api-server run dev"
+
+[services.production]
+
+[services.production.build]
+args = ["pnpm", "--filter", "@workspace/api-server", "run", "build"]
+
+[services.production.build.env]
+NODE_ENV = "production"
+
+[services.production.run]
+args = ["node", "--enable-source-maps", "artifacts/api-server/dist/index.mjs"]
+
+[services.production.run.env]
+PORT = "22729"
+NODE_ENV = "production"
+
+[services.production.health.startup]
+path = "/api-legacy/healthz"
+
+[services.env]
+PORT = "22729"
+BASE_PATH = "/api-legacy"

@@ -1,0 +1,46 @@
+kind = "web"
+previewPath = "/"
+title = "InsightPilot AI"
+version = "1.0.0"
+id = "artifacts/insightpilot"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23874
+
+[services.development]
+run = "pnpm --filter @workspace/insightpilot run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/insightpilot", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/insightpilot/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23874"
+BASE_PATH = "/"
+
+[[services]]
+name = "api"
+paths = [ "/api" ]
+localPort = 8001
+
+[services.development]
+run = "bash /home/runner/workspace/artifacts/insightpilot/backend/start.sh"
+
+[services.production]
+
+[services.production.run]
+args = [ "bash", "/home/runner/workspace/artifacts/insightpilot/backend/start_prod.sh" ]
+
+[services.production.health.startup]
+path = "/api/healthz"
+
+[services.env]
+PORT = "8001"

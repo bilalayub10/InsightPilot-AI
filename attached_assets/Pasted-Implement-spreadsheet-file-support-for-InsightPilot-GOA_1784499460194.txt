@@ -1,0 +1,252 @@
+Implement spreadsheet file support for InsightPilot.
+
+GOAL
+
+InsightPilot should accept both CSV and Excel files without changing the existing analytics pipeline.
+
+Supported formats:
+
+• .csv
+• .xlsx
+• .xls
+
+The user experience should be identical regardless of file type.
+
+====================================================
+BACKEND
+====================================================
+
+Refactor the upload pipeline so that every supported file type is converted into a Pandas DataFrame before any analysis begins.
+
+Create a dedicated service:
+
+services/file_loader.py
+
+Responsibilities:
+
+• Detect uploaded file type
+• Load the file
+• Validate the file
+• Return a clean pandas DataFrame
+
+Do NOT place file loading logic inside API routes.
+
+====================================================
+SUPPORTED FILE TYPES
+====================================================
+
+CSV
+
+Use:
+
+pandas.read_csv()
+
+Excel (.xlsx, .xls)
+
+Use:
+
+pandas.read_excel()
+
+Support workbooks with multiple sheets.
+
+If multiple sheets exist:
+
+• Automatically select the first non-empty worksheet.
+• Include the selected worksheet name in the response.
+• Design the architecture so worksheet selection can easily be added later.
+
+====================================================
+VALIDATION
+====================================================
+
+Reject:
+
+• Empty files
+• Corrupted files
+• Password-protected Excel files
+• Unsupported extensions
+• Files that cannot be parsed
+• Files containing no rows
+
+Return clear error messages.
+
+Examples:
+
+"Unsupported file type."
+
+"Workbook contains no readable sheets."
+
+"Dataset is empty."
+
+"Unable to parse Excel workbook."
+
+====================================================
+NORMALIZATION
+====================================================
+
+Before passing the DataFrame to the analytics engine:
+
+• Trim whitespace from column names.
+• Remove duplicate column names.
+• Convert Excel date columns to datetime.
+• Preserve numeric data types.
+• Preserve boolean values.
+• Normalize missing values.
+• Ensure column names remain human-readable.
+
+Do not modify the user's actual data values unless necessary for parsing.
+
+====================================================
+PIPELINE
+====================================================
+
+All downstream services must remain unchanged.
+
+BusinessClassifier
+
+AnalyticsService
+
+KPIDetector
+
+ChartPlanner
+
+ChartInsights
+
+CEOBriefing
+
+Copilot
+
+ReportGenerator
+
+DataQuality
+
+AnomalyDetector
+
+Every service should continue receiving only a pandas DataFrame.
+
+No service should need to know whether the source file was CSV or Excel.
+
+====================================================
+FRONTEND
+====================================================
+
+Update the upload component.
+
+Allow selection of:
+
+.csv
+
+.xlsx
+
+.xls
+
+Update drag-and-drop instructions to:
+
+"Upload a CSV or Excel file"
+
+Display uploaded file type.
+
+Examples:
+
+Sales_Report.xlsx
+
+Customer_Churn.csv
+
+====================================================
+USER EXPERIENCE
+====================================================
+
+After upload display:
+
+File Name
+
+File Type
+
+Worksheet Name (Excel only)
+
+Rows
+
+Columns
+
+Detected Business Domain
+
+====================================================
+ERROR HANDLING
+====================================================
+
+Handle gracefully:
+
+Invalid Excel files
+
+Missing worksheet
+
+Corrupted workbook
+
+Large workbooks
+
+Encoding issues
+
+Unsupported formats
+
+Show user-friendly messages.
+
+====================================================
+PERFORMANCE
+====================================================
+
+Avoid loading the workbook multiple times.
+
+Load once.
+
+Reuse the resulting DataFrame throughout the analytics pipeline.
+
+====================================================
+ARCHITECTURE
+====================================================
+
+Create:
+
+services/file_loader.py
+
+Routes should only:
+
+Receive upload
+
+Call FileLoader
+
+Receive DataFrame
+
+Pass DataFrame into the existing analytics pipeline
+
+No duplicate code.
+
+Keep the architecture modular.
+
+====================================================
+TESTING
+====================================================
+
+Verify that the following all work without changing any downstream services:
+
+Small CSV
+
+Large CSV
+
+Small Excel workbook
+
+Large Excel workbook
+
+Workbook with multiple sheets
+
+Workbook with missing values
+
+Workbook with mixed data types
+
+Workbook containing dates
+
+====================================================
+GOAL
+
+The upload experience should feel seamless.
+
+Whether the user uploads a CSV or an Excel workbook, InsightPilot should produce the same high-quality AI analysis, dashboard, CEO Briefing, Copilot responses, Chart Insights, and Executive Report without any additional user steps.

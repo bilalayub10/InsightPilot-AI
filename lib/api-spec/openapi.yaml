@@ -1,0 +1,410 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: InsightPilot AI API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: upload
+    description: Dataset upload operations
+  - name: analyze
+    description: Analysis operations
+  - name: copilot
+    description: AI Copilot operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /health:
+    get:
+      operationId: getHealth
+      tags: [health]
+      summary: API health
+      description: Returns InsightPilot AI service status and version
+      responses:
+        "200":
+          description: Service info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceInfo"
+  /upload:
+    post:
+      operationId: uploadDataset
+      tags: [upload]
+      summary: Upload a dataset
+      description: Accepts a CSV or Excel file and returns upload metadata
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/DatasetUploadInput"
+      responses:
+        "200":
+          description: Upload accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UploadResult"
+        "400":
+          description: Bad request
+  /copilot:
+    post:
+      operationId: queryCopilot
+      tags: [copilot]
+      summary: Ask the AI Copilot a question about a dataset
+      description: Answers a natural-language business question grounded in the dataset's analytics context
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CopilotInput"
+      responses:
+        "200":
+          description: AI Copilot response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CopilotResponse"
+        "404":
+          description: Dataset not found
+  /analyze:
+    post:
+      operationId: analyzeDataset
+      tags: [analyze]
+      summary: Trigger analysis
+      description: Triggers autonomous analysis on an uploaded dataset and returns insights
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyzeInput"
+      responses:
+        "200":
+          description: Analysis results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnalyzeResult"
+        "404":
+          description: Dataset not found
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    ServiceInfo:
+      type: object
+      properties:
+        status:
+          type: string
+        version:
+          type: string
+        service:
+          type: string
+        uptime:
+          type: number
+      required:
+        - status
+        - version
+        - service
+        - uptime
+    DatasetUploadInput:
+      type: object
+      properties:
+        name:
+          type: string
+        filename:
+          type: string
+    UploadResult:
+      type: object
+      properties:
+        datasetId:
+          type: string
+        name:
+          type: string
+        rowCount:
+          type: integer
+        columnCount:
+          type: integer
+        columns:
+          type: array
+          items:
+            type: string
+        fileSizeKb:
+          type: number
+        status:
+          type: string
+          enum: [pending, ready, processing, done, error]
+        uploadedAt:
+          type: string
+      required:
+        - datasetId
+        - name
+        - rowCount
+        - columnCount
+        - columns
+        - fileSizeKb
+        - status
+        - uploadedAt
+    AnalyzeInput:
+      type: object
+      properties:
+        datasetId:
+          type: string
+      required:
+        - datasetId
+    KpiMetric:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+        change:
+          type: number
+        trend:
+          type: string
+          enum: [up, down, flat]
+      required:
+        - label
+        - value
+        - change
+        - trend
+    ChartDataPoint:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: number
+      required:
+        - label
+        - value
+    ChartInsight:
+      type: object
+      description: AI-generated explanation for a single chart
+      properties:
+        title:
+          type: string
+          description: Short insight title (5-8 words)
+        summary:
+          type: string
+          description: 1-2 sentences describing what the data shows
+        business_impact:
+          type: string
+          description: Business implication of the detected pattern
+        recommendation:
+          type: string
+          description: Actionable recommendation grounded in the data
+        confidence:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Confidence level 0-100
+      required:
+        - title
+        - summary
+        - business_impact
+        - recommendation
+        - confidence
+    ChartSpec:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [line, bar, pie, histogram, scatter]
+        x:
+          type: string
+        y:
+          type: string
+        title:
+          type: string
+        priority:
+          type: integer
+          description: Business value rank 1–100, higher is more important
+        confidence:
+          type: number
+          description: Column-match confidence 0.0–1.0
+        reason:
+          type: string
+          description: Human-readable explanation of why this chart was chosen
+        business_question:
+          type: string
+          description: The business question this chart answers
+        aggregation:
+          type: string
+          enum: [sum, mean, count]
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/ChartDataPoint"
+          description: Pre-computed data points ready for rendering
+        insight:
+          $ref: "#/components/schemas/ChartInsight"
+          description: AI-generated chart explanation (optional)
+      required:
+        - type
+        - x
+        - y
+        - title
+        - priority
+        - confidence
+        - reason
+        - business_question
+        - aggregation
+        - data
+    CopilotInput:
+      type: object
+      properties:
+        datasetId:
+          type: string
+        question:
+          type: string
+      required:
+        - datasetId
+        - question
+    CopilotResponse:
+      type: object
+      properties:
+        answer:
+          type: string
+        reasoning:
+          type: string
+        confidence:
+          type: integer
+          minimum: 0
+          maximum: 100
+        follow_up_questions:
+          type: array
+          items:
+            type: string
+        domain:
+          type: string
+      required:
+        - answer
+        - reasoning
+        - confidence
+        - follow_up_questions
+        - domain
+    CeoBriefingHealth:
+      type: object
+      properties:
+        score:
+          type: integer
+          minimum: 0
+          maximum: 100
+        status:
+          type: string
+          enum: [Excellent, Healthy, "Needs Attention", "At Risk", Critical]
+      required:
+        - score
+        - status
+    CeoBriefing:
+      type: object
+      properties:
+        business_domain:
+          type: string
+        confidence:
+          type: integer
+          minimum: 0
+          maximum: 100
+        overall_health:
+          $ref: "#/components/schemas/CeoBriefingHealth"
+        urgency:
+          type: string
+          enum: [Low, Medium, High, Critical]
+        biggest_risk:
+          type: string
+        top_opportunity:
+          type: string
+        priority_action:
+          type: string
+        executive_summary:
+          type: string
+        key_takeaways:
+          type: array
+          items:
+            type: string
+      required:
+        - business_domain
+        - confidence
+        - overall_health
+        - urgency
+        - biggest_risk
+        - top_opportunity
+        - priority_action
+        - executive_summary
+        - key_takeaways
+    AnalyzeResult:
+      type: object
+      properties:
+        datasetId:
+          type: string
+        domain:
+          type: string
+          description: Detected business domain key (e.g. sales, hr, finance)
+        status:
+          type: string
+          enum: [pending, processing, done, error]
+        summary:
+          type: string
+        kpis:
+          type: array
+          items:
+            $ref: "#/components/schemas/KpiMetric"
+        charts:
+          type: array
+          items:
+            $ref: "#/components/schemas/ChartSpec"
+          description: Ordered chart recommendations with pre-computed data
+        trendData:
+          type: array
+          items:
+            $ref: "#/components/schemas/ChartDataPoint"
+          description: Backward-compatible alias for charts[0].data (first line chart)
+        distributionData:
+          type: array
+          items:
+            $ref: "#/components/schemas/ChartDataPoint"
+          description: Backward-compatible alias for first bar/pie chart data
+        insights:
+          type: array
+          items:
+            type: string
+        analyzedAt:
+          type: string
+        ceoBriefing:
+          $ref: "#/components/schemas/CeoBriefing"
+      required:
+        - datasetId
+        - status
+        - summary
+        - kpis
+        - charts
+        - trendData
+        - distributionData
+        - insights
+        - analyzedAt
