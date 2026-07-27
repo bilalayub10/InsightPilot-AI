@@ -93,7 +93,7 @@ Every LLM response is parsed as JSON with required keys validated; on a parse fa
 
 | | |
 |---|---|
-| ![Upload screen](ADD_SCREENSHOT_PATH_1) *Upload screen* | ![Dashboard](ADD_SCREENSHOT_PATH_2) *KPI & chart dashboard* |
+| ![Upload screen](<img width="1366" height="610" alt="Image" src="https://github.com/user-attachments/assets/d8e99365-8baa-44dd-a1e8-e89d3421746e" />) *Upload screen* | ![Dashboard](ADD_SCREENSHOT_PATH_2) *KPI & chart dashboard* |
 | ![CEO Briefing](ADD_SCREENSHOT_PATH_3) *CEO Briefing* | ![AI Copilot](ADD_SCREENSHOT_PATH_4) *AI Copilot Q&A* |
 
 ---
