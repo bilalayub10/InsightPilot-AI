@@ -2,7 +2,7 @@
 
 **Autonomous business analytics platform — upload a spreadsheet, get an executive-level intelligence report in under 30 seconds, with zero configuration.**
 
-🔗 **Live App:** [https://insight-pilot-ai--bilalayub0010.replit.app](https://insight-pilot-ai--bilalayub0010.replit.app)
+**Live App:** [https://insight-pilot-ai--bilalayub0010.replit.app](https://insight-pilot-ai--bilalayub0010.replit.app)
 
 ---
 
@@ -53,15 +53,15 @@ Every business generates data. Almost none of them can turn that data into a dec
 
 ## Features
 
-- 🧠 **Autonomous domain classification** — detects 1 of 21 business domains (Sales, Marketing, Finance, HR, Operations, Inventory, Customer Support, Healthcare, Education, Telecom, Banking, Insurance, Retail, E-commerce, Manufacturing, Supply Chain, Hospitality, Real Estate, Energy, Government, SaaS) from column names alone, using a four-tier weighted keyword classifier — no ML model, no LLM call, sub-millisecond
-- 📊 **Domain-aware KPI detection** — computes 4 relevant KPIs (e.g. Total Revenue, Avg Order Value for Sales; Headcount, Attrition for HR) directly from real data values, with correct currency/percent/integer formatting
-- 📈 **Intelligent chart planning** — selects up to 4 charts (line, bar, pie, histogram, scatter) using semantic column scoring, each labeled with the business question it answers
-- 🚨 **Data quality / anomaly detection** — IQR and Z-score outlier detection, missing-value severity scoring, duplicate-row detection, skewness analysis with severity ratings (low/medium/high)
-- 💼 **CEO Briefing** — a fully deterministic (no-LLM) one-pager: 0–100 business health score, urgency level, biggest risk, top opportunity, priority action, and a 4–5 sentence executive summary
-- 🤖 **AI Chart Insights** — every chart gets a 4-part AI-written explanation (title, summary, business impact, recommendation)
-- 🗣️ **AI Copilot** — ask natural-language questions about your specific dataset ("why did revenue drop in Q3?") and get an evidence-grounded answer with a confidence score and 3 suggested follow-ups
-- 📄 **Executive PDF Report** — a professionally designed, downloadable A4 report (cover page, KPI dashboard, rendered charts with AI insight, data quality section, business context) suitable for a board meeting
-- 🔄 **4-tier AI fallback** — Gemini → OpenRouter → Groq → deterministic pattern-based logic, so the app never fails even if all three AI providers are down
+- **Autonomous domain classification** — detects 1 of 21 business domains (Sales, Marketing, Finance, HR, Operations, Inventory, Customer Support, Healthcare, Education, Telecom, Banking, Insurance, Retail, E-commerce, Manufacturing, Supply Chain, Hospitality, Real Estate, Energy, Government, SaaS) from column names alone, using a four-tier weighted keyword classifier — no ML model, no LLM call, sub-millisecond
+- **Domain-aware KPI detection** — computes 4 relevant KPIs (e.g. Total Revenue, Avg Order Value for Sales; Headcount, Attrition for HR) directly from real data values, with correct currency/percent/integer formatting
+- **Intelligent chart planning** — selects up to 4 charts (line, bar, pie, histogram, scatter) using semantic column scoring, each labeled with the business question it answers
+- **Data quality / anomaly detection** — IQR and Z-score outlier detection, missing-value severity scoring, duplicate-row detection, skewness analysis with severity ratings (low/medium/high)
+- **CEO Briefing** — a fully deterministic (no-LLM) one-pager: 0–100 business health score, urgency level, biggest risk, top opportunity, priority action, and a 4–5 sentence executive summary
+- **AI Chart Insights** — every chart gets a 4-part AI-written explanation (title, summary, business impact, recommendation)
+- **AI Copilot** — ask natural-language questions about your specific dataset ("why did revenue drop in Q3?") and get an evidence-grounded answer with a confidence score and 3 suggested follow-ups
+- **Executive PDF Report** — a professionally designed, downloadable A4 report (cover page, KPI dashboard, rendered charts with AI insight, data quality section, business context) suitable for a board meeting
+- **4-tier AI fallback** — Gemini → OpenRouter → Groq → deterministic pattern-based logic, so the app never fails even if all three AI providers are down
 
 ---
 
