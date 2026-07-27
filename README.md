@@ -2,8 +2,7 @@
 
 **Autonomous business analytics platform — upload a spreadsheet, get an executive-level intelligence report in under 30 seconds, with zero configuration.**
 
-🔗 **Live App:** [ADD YOUR LIVE URL HERE](#) — *e.g. `https://insightpilot-ai.vercel.app`*
-📦 **Repository:** you're in it.
+🔗 **Live App:** [https://insight-pilot-ai--bilalayub0010.replit.app](https://insight-pilot-ai--bilalayub0010.replit.app)
 
 ---
 
@@ -46,7 +45,7 @@ Every business generates data. Almost none of them can turn that data into a dec
 
 ## Live Demo
 
-**URL:** `[ADD YOUR LIVE URL HERE]`
+**URL:** [https://insight-pilot-ai--bilalayub0010.replit.app](https://insight-pilot-ai--bilalayub0010.replit.app)
 
 > Open the link, upload any CSV or Excel file (a sample sales/HR/finance file works well), and the dashboard, KPIs, charts, CEO briefing, and AI Copilot will populate automatically. No login required.
 
