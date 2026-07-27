@@ -19,7 +19,7 @@
 - [API Reference](#api-reference)
 - [Known Limitations](#known-limitations)
 - [Roadmap](#roadmap)
-- [License](#license)
+- [Let's Connect](#lets-connect)
 
 ---
 
@@ -89,12 +89,29 @@ Every LLM response is parsed as JSON with required keys validated; on a parse fa
 
 ## Screenshots
 
-*(Add at least 3 screenshots below — recommended: the upload screen, the main dashboard with KPIs/charts, the CEO Briefing card, the AI Copilot in conversation, and a page of the generated PDF report.)*
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bf3f21d9-2c23-46c9-bc1e-de5b292c383a" alt="Upload Screen" width="900">
+  <br>
+  <em>Upload Screen</em>
+</p>
 
-| | |
-|---|---|
-| ![Upload screen](<img width="1366" height="610" alt="Image" src="https://github.com/user-attachments/assets/d8e99365-8baa-44dd-a1e8-e89d3421746e" />) *Upload screen* | ![Dashboard](ADD_SCREENSHOT_PATH_2) *KPI & chart dashboard* |
-| ![CEO Briefing](ADD_SCREENSHOT_PATH_3) *CEO Briefing* | ![AI Copilot](ADD_SCREENSHOT_PATH_4) *AI Copilot Q&A* |
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/87056b81-e5a8-43e4-92d4-ac8a4d83be44" alt="CEO Briefing" width="900">
+  <br>
+  <em>CEO Briefing</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8e12693e-f92c-4116-b1f4-4fd4d6f159a7" alt="KPIs & Charts Dashboard" width="900">
+  <br>
+  <em>KPIs & Charts Dashboard</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0ed4a1cf-0a20-430f-9df2-ea7e30f33fd5" alt="AI Copilot Q&A" width="900">
+  <br>
+  <em>AI Copilot Q&A</em>
+</p>
 
 ---
 
@@ -196,10 +213,8 @@ Full request/response schemas are documented in the codebase (`models/schemas.py
 
 ---
 
-## License
+## Let's Connect
 
-MIT License.
+If you found this project interesting or have questions, feel free to connect with me:
 
----
-
-*Built as an individual final project — original idea, built and shipped end-to-end.*
+- [LinkedIn](https://www.linkedin.com/in/muhammad-bilal-ayub/) 
