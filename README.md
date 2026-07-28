@@ -4,6 +4,8 @@
 
 **Live App:** [https://insight-pilot-ai--bilalayub0010.replit.app](https://insight-pilot-ai--bilalayub0010.replit.app)
 
+<img width="1366" height="637" alt="Hero Image" src="https://github.com/user-attachments/assets/1290f2d6-3509-461c-943c-54fc965e869a" />
+
 ---
 
 ## Table of Contents
